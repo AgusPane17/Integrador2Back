@@ -28,11 +28,12 @@ const initializePassport = () => {
                 let user = await UserModel.findOne({ email }).lean().exec()
                 if(user) {
                     console.log('User already exits!!')
+                    console.log(user.token)
                     return done(null, user)
                 } else {
                     console.log(`User doesn't exits. So register them`)
 
-
+                    
                     const newCart = await CartModel.create({productos: []}) 
 
                     console.log(newCart)
@@ -52,6 +53,7 @@ const initializePassport = () => {
                     console.log(user)
                     const token = generateToken(user)
                     user.token = token
+                    console.log(user.token)
     
                     return done(null, user)
                 }

@@ -29,7 +29,9 @@ router.get('/githubcallback',
     (req, res) => {
         try {
             console.log('Callback:', req.user);
-            res.cookie('keyCookieForJWT', req.user.token).redirect('/session/home');
+            console.log(req.user.token)
+            res.cookie('keyCookieForJWT', req.user.token)
+            res.redirect('/session/home')
         } catch (error) {
             console.error(error);
             res.status(500).send('Error en la devolución de llamada de GitHub');
